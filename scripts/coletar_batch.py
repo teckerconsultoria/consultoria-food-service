@@ -90,7 +90,7 @@ def main():
 
         print(f"+{len(new)} (total: {len(all_ids)}/{args.target})")
 
-        if bairro != BAIRROS[-1]:
+        if bairro != bairros[-1]:
             time.sleep(1)
 
     print(f"\n=== FINAL: {len(all_ids)} restaurantes ===")
