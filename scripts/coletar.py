@@ -8,8 +8,11 @@ Uso:
 """
 
 import argparse
+import os
 import sys
 from collections import Counter
+
+sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.config import load_config
 from src.db import get_supabase_client, fetch_restaurants, upsert_restaurants
