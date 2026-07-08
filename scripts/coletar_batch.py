@@ -15,7 +15,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from src.config import load_config
 from src.db import get_supabase_client, fetch_restaurants, upsert_restaurants
-from src.collect import collect_restaurants
+from src.collect import collect_by_bairro
 
 
 def _load_bairros() -> list[str]:
@@ -65,12 +65,12 @@ def main():
         print(f"Batch {batch_num}: '{query}'...", end=" ", flush=True)
 
         try:
-            results = collect_restaurants(
-                queries=[query],
-                target=args.target - len(all_ids),
+            results = collect_by_bairro(
+                bairros=[bairro],
+                cidade="João Pessoa",
+                keyword=args.query,
+                target=20,
                 enrich_details=True,
-                min_rating=None,
-                open_now=False,
             )
         except Exception as e:
             print(f"ERRO: {e}")

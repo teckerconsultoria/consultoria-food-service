@@ -121,33 +121,28 @@ def parse_place(raw: dict) -> Restaurante:
     )
 
 
-_OVERFLOW_TERMS = [
-    "comida",
-    "almoço",
-    "lanchonete",
-]
+def geocode_mcp(address: str) -> tuple[float, float] | None:
+    try:
+        data = _mcp_exec("geocode", {"address": address})
+        if data.get("success"):
+            loc = data.get("data", {}).get("location", {})
+            return loc.get("lat"), loc.get("lng")
+    except Exception as e:
+        logger.warning("geocode failed for '%s': %s", address, e)
+    return None
 
 
-def _collect_from_query(
-    query: str,
-    all_raw: list[dict],
-    search_kwargs: dict,
-    max_overflow: int = 2,
-) -> None:
-    results = search_places(query, **search_kwargs)
-    all_raw.extend(results)
-    count = len(results)
-    logger.info("Query '%s' returned %d results", query, count)
-
-    if count >= 10 and " em " in query:
-        bairro_part = query.split(" em ", 1)[1]
-        for term in _OVERFLOW_TERMS[:max_overflow]:
-            overflow_q = f"{term} em {bairro_part}"
-            overflow = search_places(overflow_q, **search_kwargs)
-            all_raw.extend(overflow)
-            logger.info("  overflow '%s': +%d", overflow_q, len(overflow))
-            if len(overflow) < 10:
-                break
+def search_nearby(lat: float, lng: float, keyword: str = "restaurant", radius: int = 2000) -> list[dict]:
+    params = {
+        "center": {"value": f"{lat},{lng}", "isCoordinates": True},
+        "keyword": keyword,
+        "radius": radius,
+    }
+    data = _mcp_exec("search-nearby", params)
+    if not data.get("success"):
+        logger.warning("search-nearby failed: %s", data.get("error", ""))
+        return []
+    return data.get("data", [])
 
 
 def collect_restaurants(
@@ -169,7 +164,9 @@ def collect_restaurants(
     for query in queries:
         if len(all_raw) >= target:
             break
-        _collect_from_query(query, all_raw, search_kwargs)
+        results = search_places(query, **search_kwargs)
+        all_raw.extend(results)
+        logger.info("Query '%s' returned %d results", query, len(results))
 
     deduped = deduplicate(all_raw)
     logger.info("Collected %d raw, %d after dedup", len(all_raw), len(deduped))
@@ -201,6 +198,62 @@ def collect_restaurants(
         parsed.append(parse_place(place))
 
     logger.info("Final collection: %d restaurantes", len(parsed))
+    return parsed
+
+
+def collect_by_bairro(
+    bairros: list[str],
+    cidade: str = "João Pessoa",
+    keyword: str = "restaurant",
+    target: int = 100,
+    enrich_details: bool = True,
+) -> list[Restaurante]:
+    all_raw: list[dict] = []
+
+    for bairro in bairros:
+        if len(all_raw) >= target:
+            break
+
+        address = f"{bairro}, {cidade}, PB"
+        coords = geocode_mcp(address)
+        if not coords:
+            logger.warning("Could not geocode %s, falling back to text search", bairro)
+            results = search_places(f"{keyword} em {address}")
+        else:
+            results = search_nearby(coords[0], coords[1], keyword=keyword, radius=2000)
+
+        all_raw.extend(results)
+        logger.info("%s: %d results (nearby)" if coords else "%s: %d results (text)", bairro, len(results))
+
+    deduped = deduplicate(all_raw)
+    logger.info("Collected %d raw, %d after dedup", len(all_raw), len(deduped))
+
+    parsed = []
+    enriched = deduped[:target]
+
+    if enrich_details and enriched:
+        logger.info("Enriching %d places with details (parallel)...", len(enriched))
+
+        def enrich_one(place):
+            details = get_place_details(place["place_id"])
+            return {**place, **(details or {})}
+
+        with ThreadPoolExecutor(max_workers=5) as executor:
+            futures = {executor.submit(enrich_one, p): i for i, p in enumerate(enriched)}
+            result_list = [None] * len(enriched)
+            for future in as_completed(futures):
+                idx = futures[future]
+                try:
+                    result_list[idx] = future.result(timeout=15)
+                except Exception as e:
+                    logger.warning("enrich failed for idx %d: %s", idx, e)
+                    result_list[idx] = enriched[idx]
+            enriched = [r for r in result_list if r is not None]
+
+    for place in enriched:
+        parsed.append(parse_place(place))
+
+    logger.info("Final: %d restaurantes", len(parsed))
     return parsed
 
 
