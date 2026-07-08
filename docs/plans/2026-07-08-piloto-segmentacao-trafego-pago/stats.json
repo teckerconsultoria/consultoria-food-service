@@ -1,0 +1,109 @@
+{
+  "feature": "piloto-segmentacao-trafego-pago",
+  "slug": "2026-07-08-piloto-segmentacao-trafego-pago",
+  "created_at": "2026-07-08T16:00:00Z",
+  "status": "open",
+  "branch": "feature/piloto-segmentacao-trafego-pago",
+  "summary": {
+    "total": 5,
+    "open": 5,
+    "in_progress": 0,
+    "blocked": 0,
+    "resolved": 0,
+    "skills_used_count": {}
+  },
+  "issues": [
+    {
+      "id": 1,
+      "title": "Setup de contas e ambiente",
+      "status": "open",
+      "primary_skill": "backend-patterns",
+      "secondary_skills": ["security-review"],
+      "created_at": "2026-07-08T16:00:00Z",
+      "resolved_at": null,
+      "resolved_skill_used": null,
+      "pr_url": null,
+      "notes": null
+    },
+    {
+      "id": 2,
+      "title": "Coleta e persistência de dados",
+      "status": "open",
+      "primary_skill": "python-patterns",
+      "secondary_skills": ["api-design", "backend-patterns"],
+      "created_at": "2026-07-08T16:00:00Z",
+      "resolved_at": null,
+      "resolved_skill_used": null,
+      "pr_url": null,
+      "notes": null
+    },
+    {
+      "id": 3,
+      "title": "Análise e relatório de densidade",
+      "status": "open",
+      "primary_skill": "python-patterns",
+      "secondary_skills": ["backend-patterns"],
+      "created_at": "2026-07-08T16:00:00Z",
+      "resolved_at": null,
+      "resolved_skill_used": null,
+      "pr_url": null,
+      "notes": null
+    },
+    {
+      "id": 4,
+      "title": "Meta Ads e campanha ativa",
+      "status": "open",
+      "primary_skill": "analytics-tracking",
+      "secondary_skills": ["paid-ads"],
+      "created_at": "2026-07-08T16:00:00Z",
+      "resolved_at": null,
+      "resolved_skill_used": null,
+      "pr_url": null,
+      "notes": null
+    },
+    {
+      "id": 5,
+      "title": "Material de venda (achismo vs dados)",
+      "status": "open",
+      "primary_skill": "copywriting",
+      "secondary_skills": ["python-patterns"],
+      "created_at": "2026-07-08T16:00:00Z",
+      "resolved_at": null,
+      "resolved_skill_used": null,
+      "pr_url": null,
+      "notes": null
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "Cartão de crédito para Google Cloud billing",
+      "owner": "cliente",
+      "blocking": true,
+      "resolved": false
+    },
+    {
+      "name": "Cartão para Meta Ads (mínimo de gasto)",
+      "owner": "cliente",
+      "blocking": true,
+      "resolved": false
+    },
+    {
+      "name": "CNPJ para Meta Business Manager (se solicitado)",
+      "owner": "cliente",
+      "blocking": false,
+      "resolved": false
+    },
+    {
+      "name": "Definição do ICP comercial (preço, categoria, rating)",
+      "owner": "gestor",
+      "blocking": false,
+      "resolved": false
+    },
+    {
+      "name": "Acesso ao Meta Business Manager do cliente",
+      "owner": "cliente",
+      "blocking": true,
+      "resolved": false
+    }
+  ]
+}
