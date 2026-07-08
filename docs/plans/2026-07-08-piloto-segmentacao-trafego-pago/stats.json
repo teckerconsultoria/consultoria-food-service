@@ -6,22 +6,24 @@
   "branch": "feature/piloto-segmentacao-trafego-pago",
   "summary": {
     "total": 5,
-    "open": 5,
+    "open": 4,
     "in_progress": 0,
     "blocked": 0,
-    "resolved": 0,
-    "skills_used_count": {}
+    "resolved": 1,
+    "skills_used_count": {
+      "backend-patterns": 1
+    }
   },
   "issues": [
     {
       "id": 1,
       "title": "Setup de contas e ambiente",
-      "status": "in_progress",
+      "status": "resolved",
       "primary_skill": "backend-patterns",
       "secondary_skills": ["security-review"],
       "created_at": "2026-07-08T16:00:00Z",
-      "resolved_at": null,
-      "resolved_skill_used": null,
+      "resolved_at": "2026-07-08T17:00:00Z",
+      "resolved_skill_used": "backend-patterns",
       "pr_url": null,
       "github_issue_url": "https://github.com/teckerconsultoria/consultoria-food-service/issues/1",
       "notes": null
