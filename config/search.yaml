@@ -1,0 +1,39 @@
+# Configuração de busca — personalize por nicho, bairro e filtros
+# Edite este arquivo antes de rodar a coleta
+
+# Nicho de mercado (aparece na query de busca)
+nichos:
+  - restaurante
+  # - pizzaria
+  # - hamburgueria
+  # - cafeteria
+  # - sushi
+  # - comida japonesa
+
+# Bairros de João Pessoa para buscar
+bairros:
+  - Manaíra
+  - Tambaú
+  - Cabo Branco
+  - Jardim Oceania
+  - Bessa
+  # - Miramar
+  # - Bancários
+  # - Centro
+  # - Altiplano
+  # - Torre
+
+# Filtros aplicados na busca (parâmetros da API)
+filtros:
+  min_rating: 4.0      # 1.0–5.0 (remova a linha para sem filtro)
+  open_now: false       # true = apenas abertos agora
+  # included_type: restaurant  # tipo específico do Google Places
+
+# Pós-coleta: enriquecer com place-details (website, reviews, etc.)
+enrich_details: true
+
+# Número alvo de restaurantes
+target: 50
+
+# Cidade (usado na query e extração de bairro)
+cidade: João Pessoa

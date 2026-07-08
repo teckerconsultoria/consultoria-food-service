@@ -36,8 +36,14 @@ def _mcp_exec(tool: str, params: dict) -> dict:
     return json.loads(result.stdout) if result.stdout.strip() else {}
 
 
-def search_places(query: str) -> list[dict]:
-    data = _mcp_exec("search-places", {"query": query})
+def search_places(query: str, **kwargs) -> list[dict]:
+    params = {"query": query}
+
+    for key, val in kwargs.items():
+        if val is not None:
+            params[key] = val
+
+    data = _mcp_exec("search-places", params)
     if not data.get("success"):
         logger.warning("search-places returned error: %s", data.get("error", ""))
         return []
@@ -108,13 +114,22 @@ def collect_restaurants(
     queries: list[str],
     target: int = 100,
     enrich_details: bool = True,
+    min_rating: float | None = None,
+    open_now: bool = False,
+    included_type: str | None = None,
 ) -> list[Restaurante]:
     all_raw: list[dict] = []
+
+    search_kwargs = {
+        "minRating": min_rating,
+        "openNow": open_now if open_now else None,
+        "includedType": included_type,
+    }
 
     for query in queries:
         if len(all_raw) >= target:
             break
-        results = search_places(query)
+        results = search_places(query, **search_kwargs)
         all_raw.extend(results)
         logger.info("Query '%s' returned %d results", query, len(results))
 
@@ -149,3 +164,24 @@ def collect_restaurants(
 
     logger.info("Final collection: %d restaurantes", len(parsed))
     return parsed
+
+
+def collect_from_config(config_path: str = "config/search.yaml") -> list[Restaurante]:
+    from src.search_config import SearchConfig, load_config
+
+    cfg = load_config(config_path)
+
+    queries = cfg.build_queries()
+    logger.info(
+        "Search config: nichos=%s bairros=%s min_rating=%s open_now=%s target=%d",
+        cfg.nichos, cfg.bairros, cfg.min_rating, cfg.open_now, cfg.target,
+    )
+
+    return collect_restaurants(
+        queries=queries,
+        target=cfg.target,
+        enrich_details=cfg.enrich_details,
+        min_rating=cfg.min_rating,
+        open_now=cfg.open_now,
+        included_type=cfg.included_type,
+    )
