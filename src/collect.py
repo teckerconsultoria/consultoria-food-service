@@ -107,6 +107,17 @@ def parse_place(raw: dict) -> Restaurante:
         tem_website=bool(raw.get("website")),
         permanently_closed=False,
         data_coleta=datetime.now(timezone.utc),
+        telefone=raw.get("phone"),
+        horarios=raw.get("opening_hours"),
+        dining_options=raw.get("dining_options"),
+        serves=raw.get("serves"),
+        atmosphere=raw.get("atmosphere"),
+        payment_options=raw.get("payment_options"),
+        parking=raw.get("parking"),
+        accessibility=raw.get("accessibility"),
+        review_summary=raw.get("review_summary"),
+        photo_count=raw.get("photo_count"),
+        editorial_summary=raw.get("editorial_summary"),
     )
 
 
