@@ -8,6 +8,7 @@ from src.models import Restaurante
 logger = logging.getLogger(__name__)
 
 MCP_PACKAGE = "@cablate/mcp-google-map"
+
 PRICE_LEVEL_MAP = {
     "PRICE_LEVEL_UNSPECIFIED": None,
     "PRICE_LEVEL_FREE": 0,
@@ -36,47 +37,43 @@ def _mcp_exec(tool: str, params: dict) -> dict:
 
 def search_places(query: str) -> list[dict]:
     data = _mcp_exec("search-places", {"query": query})
-    return data.get("places", [])
+    if not data.get("success"):
+        logger.warning("search-places returned error: %s", data.get("error", ""))
+        return []
+    return data.get("data", [])
 
 
 def get_place_details(place_id: str) -> dict:
-    data = _mcp_exec("place-details", {"place_id": place_id})
-    return data
+    data = _mcp_exec("place-details", {"placeId": place_id})
+    if not data.get("success"):
+        logger.warning("place-details failed for %s: %s", place_id, data.get("error", ""))
+        return {}
+    return data.get("data", {})
 
 
-def reverse_geocode(lat: float, lng: float) -> str | None:
-    try:
-        data = _mcp_exec("reverse-geocode", {"latlng": f"{lat},{lng}"})
-        results = data.get("results", [])
-        if results:
-            address = results[0].get("address_components", [])
-            for comp in address:
-                if "sublocality" in comp.get("types", []):
-                    return comp.get("short_name")
-            for comp in address:
-                if "neighborhood" in comp.get("types", []):
-                    return comp.get("short_name")
-        return None
-    except Exception:
-        return None
+def _extract_bairro_from_address(address: str) -> str:
+    import re
+    match = re.search(
+        r"\s-\s([^-]+),\s*Jo[aã]o\s+Pessoa\s*-",
+        address,
+        re.IGNORECASE,
+    )
+    return match.group(1).strip() if match else ""
+
+
+def reverse_geocode_mcp(lat: float, lng: float) -> str | None:
+    return None
 
 
 def deduplicate(places: list[dict]) -> list[dict]:
     seen = set()
     unique = []
     for place in places:
-        pid = place.get("id", "")
+        pid = place.get("place_id", "")
         if pid and pid not in seen:
             seen.add(pid)
             unique.append(place)
     return unique
-
-
-def filter_closed(places: list[dict]) -> list[dict]:
-    return [
-        p for p in places
-        if p.get("businessStatus", "") != "CLOSED_PERMANENTLY"
-    ]
 
 
 def _get_price_level(raw: str | None) -> int | None:
@@ -84,26 +81,24 @@ def _get_price_level(raw: str | None) -> int | None:
 
 
 def parse_place(raw: dict) -> Restaurante:
-    lat = raw.get("location", {}).get("latitude", 0.0)
-    lng = raw.get("location", {}).get("longitude", 0.0)
+    lat = raw.get("location", {}).get("lat", 0.0)
+    lng = raw.get("location", {}).get("lng", 0.0)
 
-    bairro = reverse_geocode(lat, lng) or ""
-
-    tipos = raw.get("types", [])
-    tipo = tipos[0] if tipos else ""
+    endereco = raw.get("address", "")
+    bairro = reverse_geocode_mcp(lat, lng) or _extract_bairro_from_address(endereco)
 
     return Restaurante(
-        place_id=raw.get("id", ""),
-        nome=(raw.get("displayName") or {}).get("text", ""),
-        endereco=raw.get("formattedAddress", ""),
+        place_id=raw.get("place_id", ""),
+        nome=raw.get("name", ""),
+        endereco=endereco,
         bairro=bairro,
         lat=lat,
         lng=lng,
-        tipo=tipo,
+        tipo=raw.get("primary_type", ""),
         rating=raw.get("rating"),
-        price_level=_get_price_level(raw.get("priceLevel")),
-        tem_website=bool(raw.get("websiteUri")),
-        permanently_closed=raw.get("businessStatus") == "CLOSED_PERMANENTLY",
+        price_level=_get_price_level(raw.get("price_level")),
+        tem_website=bool(raw.get("website")),
+        permanently_closed=False,
         data_coleta=datetime.now(timezone.utc),
     )
 
@@ -111,24 +106,29 @@ def parse_place(raw: dict) -> Restaurante:
 def collect_restaurants(
     queries: list[str],
     target: int = 100,
+    enrich_details: bool = True,
 ) -> list[Restaurante]:
     all_raw: list[dict] = []
 
     for query in queries:
         if len(all_raw) >= target:
             break
-
         results = search_places(query)
         all_raw.extend(results)
         logger.info("Query '%s' returned %d results", query, len(results))
 
     deduped = deduplicate(all_raw)
-    open_places = filter_closed(deduped)
-    logger.info(
-        "Collected %d raw, %d after dedup, %d after removing closed",
-        len(all_raw), len(deduped), len(open_places),
-    )
+    logger.info("Collected %d raw, %d after dedup", len(all_raw), len(deduped))
 
-    result = [parse_place(p) for p in open_places[:target]]
-    logger.info("Final collection: %d restaurantes", len(result))
-    return result
+    parsed = []
+    for place in deduped[:target]:
+        if enrich_details:
+            details = get_place_details(place["place_id"])
+            if details:
+                place = {**place, **details}
+
+        restaurante = parse_place(place)
+        parsed.append(restaurante)
+
+    logger.info("Final collection: %d restaurantes", len(parsed))
+    return parsed
