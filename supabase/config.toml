@@ -1,0 +1,13 @@
+project_id = "consultoria-food-service"
+
+[db.migrations]
+enabled = true
+schema_paths = []
+
+[db.seed]
+enabled = false
+
+[api]
+enabled = true
+schemas = ["public"]
+auto_expose_new_tables = false

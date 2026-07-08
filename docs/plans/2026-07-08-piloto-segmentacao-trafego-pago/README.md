@@ -1,6 +1,6 @@
 # Piloto de Inteligência de Mercado para Segmentação de Tráfego Pago — Restaurantes em João Pessoa
 
-> Plano de execução de piloto de negócio + tecnologia. Não é plano de código puro — inclui setup de APIs, banco, campanha Meta e entregáveis comerciais.
+> Plano de execução de piloto de negócio + tecnologia. Stack: Python 3.12 + Supabase + mcp-google-map + Meta Ads.
 
 **Spec completa:** [`spec.md`](./spec.md)
 
@@ -8,44 +8,39 @@
 
 ## O que este plano constrói
 
-Piloto de 5 a 7 dias que produz:
-
-1. Base de **100 restaurantes únicos de João Pessoa** coletada via Google Places API.
-2. Relatório de densidade/perfil com bairros prioritários, categoria dominante, faixa de preço e rating.
-3. Recomendação de raio(s) geográfico(s) e interesses para Meta Ads.
-4. Conta Meta Business Manager + conta de anúncios criada.
-5. Campanha piloto ativa no Meta Ads com segmentação manual baseada nos dados.
-6. Argumento de venda com prova: comparação "achismo vs dados" sobre o N=100.
+1. Base de restaurantes de João Pessoa coletada via `mcp-google-map` (MCP server).
+2. Relatório de densidade/perfil: bairros, categoria, faixa de preço, rating, maturidade digital.
+3. Recomendação de raio(s) e interesses para Meta Ads baseada em dados reais.
+4. Conta Meta Business Manager + campanha piloto ativa.
+5. Argumento de venda: comparação "achismo vs dados".
 
 ---
 
 ## Arquitetura
 
 ```
-Google Places API → Script Python (collect) → Normalização → Supabase
-                                                          ↓
-                                              Script Python (analyze)
-                                                          ↓
-                                             Relatório Markdown + CSV
-                                                          ↓
-                                              Meta Ads Manager (manual)
-                                                          ↓
-                                             Campanha ativa + pitch
+mcp-google-map (MCP) → collect.py → normalização → Supabase
+                                    ↓
+                         analyze.py (TODO)
+                                    ↓
+                         Relatório Markdown + CSV
+                                    ↓
+                         Meta Ads Manager (manual)
 ```
 
 ---
 
 ## Issues
 
-| # | Issue | Status | Skill principal |
-|---|---|---|---|
-| 1 | Setup de contas e ambiente | open | `backend-patterns` |
-| 2 | Coleta e persistência de dados | open | `python-patterns` + `api-design` |
-| 3 | Análise e relatório de densidade | open | `python-patterns` |
-| 4 | Meta Ads e campanha ativa | open | `analytics-tracking` |
-| 5 | Material de venda (achismo vs dados) | open | `copywriting` |
+| # | Issue | Status |
+|---|---|---|
+| 1 | Setup de contas e ambiente | ✅ resolved |
+| 2 | Coleta e persistência de dados | ✅ resolved |
+| 3 | Análise e relatório de densidade | open |
+| 4 | Meta Ads e campanha ativa | open |
+| 5 | Material de venda | open |
 
-Veja `stats.json` para a fonte da verdade.
+Veja `stats.json` para detalhes.
 
 ---
 
@@ -55,32 +50,48 @@ Veja `stats.json` para a fonte da verdade.
 # Instalar dependências
 pip install -r requirements.txt
 
-# Coletar restaurantes
-python src/collect.py
+# Coletar restaurantes + gerar relatório
+python -c "
+from src.config import load_config
+from src.db import get_supabase_client, upsert_restaurants
+from src.collect import collect_restaurants
 
-# Gerar relatório
-python src/analyze.py
+config = load_config()
+client = get_supabase_client(config)
+results = collect_restaurants([
+    'restaurantes em Manaíra, João Pessoa',
+    'restaurantes em Tambaú, João Pessoa',
+    'restaurantes em Cabo Branco, João Pessoa',
+    'restaurantes em Jardim Oceania, João Pessoa',
+    'restaurantes em Bessa, João Pessoa',
+], target=50, enrich_details=True)
+upsert_restaurants(client, [r.to_dict() for r in results])
+print(f'{len(results)} restaurantes persistidos')
+"
+
+# Rodar testes
+pytest tests/
 ```
 
 ---
 
-## Skills
+## Skills utilizadas
 
-- `backend-patterns` — arquitetura da camada de dados e Supabase
-- `python-patterns` — scripts Python idiomáticos
-- `api-design` — consumo de Google Places API e estrutura de dados
-- `analytics-tracking` — configuração de campanha e segmentação no Meta Ads
-- `writing-plans` — decompor em tarefas executáveis
+- `backend-patterns` — Supabase, schema, RLS
+- `python-patterns` — scripts Python, TDD
+- `api-design` — mcp-google-map como MCP server
+- `analytics-tracking` — Meta Ads
 
 ---
 
 ## Checklist de execução
 
-- [ ] Validar spec com cliente/gestor
-- [ ] Coletar acesso e chaves (Google Cloud, Supabase, Meta BM)
-- [ ] Resolver Issue 1: setup de contas e ambiente
-- [ ] Resolver Issue 2: coleta e persistência
+- [x] Validar spec com cliente/gestor
+- [x] Coletar acesso e chaves (Google Maps, Supabase)
+- [x] Resolver Issue 1: setup de contas e ambiente
+- [x] Resolver Issue 2: coleta e persistência
 - [ ] Resolver Issue 3: análise e relatório
 - [ ] Resolver Issue 4: Meta Ads e campanha ativa
 - [ ] Resolver Issue 5: material de venda
-- [ ] Atualizar `stats.json` ao final de cada issue
+- [ ] Coletar acesso Meta Business Manager (cliente)
+- [x] Atualizar `stats.json` ao final de cada issue
