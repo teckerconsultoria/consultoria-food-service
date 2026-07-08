@@ -31,7 +31,7 @@
     {
       "id": 2,
       "title": "Coleta e persistência de dados",
-      "status": "open",
+      "status": "in_progress",
       "primary_skill": "python-patterns",
       "secondary_skills": ["api-design", "backend-patterns"],
       "created_at": "2026-07-08T16:00:00Z",
