@@ -1,0 +1,47 @@
+place_id,nome,bairro,endereco,tipo,rating,price_level,tem_website,lat,lng
+ChIJlcgT85TdrAcRmgw8iah6v2Q,Quintal Di Casa Restaurantes,Manaíra,"Av. Umbuzeiro, 592 - Manaíra, João Pessoa - PB, 58038-180, Brazil",restaurant,4.7,,False,-7.1047584,-34.8326492
+ChIJx3-sY0zdrAcRaSxgNCCCclM,Casa de Nara,Manaíra,"Av. João Maurício, 761 C - Manaíra, João Pessoa - PB, 58038-000, Brazil",restaurant,4.8,2,True,-7.1054335,-34.829136
+ChIJt6ttj8rdrAcRglIk0hoPyYk,Santa Grelha João Pessoa,Manaíra,"R. Manoel Arruda Cavalcante, 805 - Manaíra, João Pessoa - PB, 58037-000, Brazil",steak_house,4.7,2,True,-7.0993039,-34.8444194
+ChIJ4c2JZBXdrAcRQ3Djk6x7rq4,Quintal Restô | Restaurante Contemporâneo,Manaíra,"Av. Eutiquiano Barreto, 863 - Manaíra, João Pessoa - PB, 58038-311, Brazil",restaurant,4.7,3,True,-7.1069928,-34.8384258
+ChIJvW30jSbdrAcROE2_8JClrmE,Arc Restaurante,Manaíra,"Av. João Maurício, 975 - Manaíra, João Pessoa - PB, 58038-000, Brazil",restaurant,4.6,,True,-7.1037364,-34.8304
+ChIJQ3ocKRfdrAcRoTiNLHZAONo,Mangai JP Praia,Manaíra,"Av. Gen. Edson Ramalho, 696 - Manaíra, João Pessoa - PB, 58038-100, Brazil",restaurant,4.7,3,True,-7.103013,-34.8319842
+ChIJczoLJbbdrAcRK1eSzI-ZCUc,Tasquinha do Matinha,Manaíra,"Av. Ingá, 400 - Manaíra, João Pessoa - PB, 58038-250, Brazil",restaurant,4.6,2,False,-7.1065494,-34.8325229
+ChIJ92mchBjdrAcR4Bm7erNb8uo,Restaurante Maré Alta,Manaíra,"Av. João Maurício, 305 - Manaíra, João Pessoa - PB, 58038-000, Brazil",buffet_restaurant,4.6,1,True,-7.1081812,-34.826006
+ChIJpds7GV7drAcRIGdkfcf2sKY,Limone & Capperi Trattoria - Restaurante Italiano em João Pessoa,Manaíra,"Av. Ingá, 284 - Manaíra, João Pessoa - PB, 58038-251, Brazil",italian_restaurant,4.5,,True,-7.1059963,-34.8317091
+ChIJAQBMXRbdrAcRpaZDPHgjFRM,Pé de Fruta Manaira,Manaíra,"Av. Manoel Morais, 175 - Manaíra, João Pessoa - PB, 58038-231, Brazil",restaurant,4.5,2,True,-7.106406,-34.8299059
+ChIJqwHlZCHdrAcRPQZ2tKGBwNA,Villa Tambaú Choperia & Café,Tambaú,"Av. Alm. Tamandaré, 199 - Tambaú, João Pessoa - PB, 58039-010, Brazil",restaurant,4.6,1,False,-7.1116941,-34.8234462
+ChIJiYqugyHdrAcRLDjYclj9upo,Buongustaio Ristorante,Tambaú,"Av. Alm. Tamandaré, 440 - Tambaú, João Pessoa - PB, 58039-010, Brazil",italian_restaurant,4.4,2,False,-7.1137757,-34.8226026
+ChIJ2_eMYSbdrAcRfxf80QFlvtg,Giramundo Tambaú,Tambaú,"Av. Alm. Tamandaré, 564 - Tambaú, João Pessoa - PB, 58039-010, Brazil",bar,4.6,2,True,-7.1156217,-34.8227199
+ChIJB_1qIgDdrAcRPJkGHDpk3Yk,Matuto Teimoso - Culinária Regional,Cabo Branco,"Av. Pres. Epitácio Pessoa, 108 - Cabo Branco, João Pessoa - PB, 58040-000, Brazil",restaurant,4.5,,True,-7.1196464,-34.8239096
+ChIJoRJInu7drAcRfH_BaoyqRwY,ORAMA rooftop,Cabo Branco,"Av. Cabo Branco, 1148 - Cabo Branco, João Pessoa - PB, 58045-010, Brazil",restaurant,4.5,,True,-7.1200429,-34.8240427
+ChIJa4696yPdrAcR7EzrD7u74Xk,Famiglia Muccini Italian Restaurant,Tambaú,"R. Nossa Sra. dos Navegantes, 140 - Tambaú, João Pessoa - PB, 58039-110, Brazil",italian_restaurant,4.6,2,True,-7.1137952,-34.8247494
+ChIJDa6DUyPdrAcRGsfuaU6xfuM,Tábua de Carne - João Pessoa,Tambaú,"Av. Profa. Maria Sales, 261 - Tambaú, João Pessoa - PB, 58039-130, Brazil",barbecue_restaurant,4.5,2,True,-7.1128735,-34.8254223
+ChIJj-5ZiWLdrAcRm8eTgmz-bkU,Peixada e Restaurante da Rainha,Tambaú,"Av. Olinda, 88 - Tambaú, João Pessoa - PB, 58039-120, Brazil",restaurant,3.7,2,False,-7.1121812,-34.8240828
+ChIJrXkqqRTdrAcRZkem-WvJLlI,All Garden Restaurante Tambaú,Tambaú,"Av. Infante Dom Henrique, 531 - Tambaú, João Pessoa - PB, 58039-151, Brazil",italian_restaurant,4.7,2,True,-7.1163702,-34.8267265
+ChIJ4zsW753drAcR9XudiGBB9YY,Havana Gastrobar,Tambaú,"R. Nossa Sra. dos Navegantes, 1053 - Tambaú, João Pessoa - PB, 58039-111, Brazil",restaurant,4.9,,False,-7.1185496,-34.8253465
+ChIJCbNMPNTCrAcR7VonoRRaU_M,Restaurante Olho de Lula,Cabo Branco,"Av. Cabo Branco, 2300 - Cabo Branco, João Pessoa - PB, 58045-010, Brazil",seafood_restaurant,4.5,2,True,-7.130144,-34.8225747
+ChIJLZlnH9jCrAcR3HT36AW0lNA,Bar do Cuscuz - João Pessoa,Cabo Branco,"Av. Cabo Branco, 3056 - Cabo Branco, João Pessoa - PB, 58045-010, Brazil",restaurant,4.5,3,True,-7.1365339,-34.8194621
+ChIJH9UDTHHDrAcRb1ltD0YVtH4,Maral Restaurante,Cabo Branco,"Av. Cabo Branco, 2098 - Sl 1 - Cabo Branco, João Pessoa - PB, 58045-100, Brazil",restaurant,4.9,,False,-7.1284766,-34.8232272
+ChIJ9RWwTz3DrAcRb0dFn7UKXvU,Corais Bar e Restaurante,Cabo Branco,"Av. Cabo Branco, 5100 - Cabo Branco, João Pessoa - PB, 58045-010, Brazil",seafood_restaurant,4.4,2,True,-7.1456943,-34.8067257
+ChIJB7DSQTrdrAcR5ionZC7k0a4,IOCÁ Café,Cabo Branco,"Av. Cabo Branco, 1148 - Cabo Branco, João Pessoa - PB, 58045-010, Brazil",restaurant,4.5,,True,-7.1200429,-34.8240427
+ChIJYZmg_gfdrAcRkXLcLLVg0_o,Sal e Brasa João Pessoa,Cabo Branco,"Av. Cabo Branco, 1830 - Cabo Branco, João Pessoa - PB, 58045-010, Brazil",barbecue_restaurant,4.5,2,True,-7.1258566,-34.8239097
+ChIJb6z3Ud3drAcRbcrjal5SCy8,Navegantes pizzaria e restaurante,Cabo Branco,"R. Marcionila da Conceição, 1545 - Cabo Branco, João Pessoa - PB, 58045-050, Brazil",restaurant,4.3,2,True,-7.1228919,-34.8262059
+ChIJN6hydADDrAcRHsuri6EVDnE,Al'Mar Cucina,Cabo Branco,"R. Luciano Ribeiro de Morais, 63 - Cabo Branco, João Pessoa - PB, 58045-440, Brazil",italian_restaurant,4.7,,False,-7.143933,-34.8134922
+ChIJSUorIafdrAcRQrpap0-rPcU,Moman Cozinha Contemporânea,Jardim Oceania,"Rua Prefeito Joaquim Gonçalves de Assis, 50 - Lj 11 - Jardim Oceania, João Pessoa - PB, 58037-645, Brazil",restaurant,4.2,,True,-7.0758466,-34.8326698
+ChIJhVh2nr7drAcRynU4eAZ8R9k,Sabor Arrochado Restaurante,Jardim Oceania,"Av. João Maurício, 1801 - Jardim Oceania, João Pessoa - PB, 58037-010, Brazil",restaurant,4.8,,True,-7.0969894,-34.8335794
+ChIJQfqBaM_drAcROFgN6EENNlY,Estaleiro Restaurante - Bessa | Peixes e Frutos do mar,Jardim Oceania,"R. Severino Linhares Pordeus, 59 - Jardim Oceania, João Pessoa - PB, 58037-208, Brazil",seafood_restaurant,4.5,2,True,-7.0918133,-34.8363534
+ChIJhblinEvdrAcRvTjHxmRCW6Y,La Playa Bar e Restaurante,Jardim Oceania,"Av. Gov. Argemiro de Figueiredo, 2548 - Jardim Oceania, João Pessoa - PB, 58037-030, Brazil",cocktail_bar,4.6,2,True,-7.0743444,-34.8304666
+ChIJ8WPpN-jdrAcRMMUAqeKbDig,Mió do Sertão,Jardim Oceania,"R. José Simões de Araújo, 139 - Jardim Oceania, João Pessoa - PB, 58037-740, Brazil",restaurant,4.6,2,True,-7.075684,-34.8379105
+ChIJq0zGMqXdrAcRiK834yyDVh0,Golfinho Bar and Restaurant,Jardim Oceania,"Av. Gov. Argemiro de Figueiredo, 1890 - Jardim Oceania, João Pessoa - PB, 58037-030, Brazil",restaurant,4.4,2,True,-7.080732,-34.831274
+ChIJpb9UkAbdrAcRP8k6Wyl4HEg,Sea Rooftop,Bessa,"Rooftop Oceana Atlântico Hotel - Av. Gov. Argemiro de Figueiredo, 2100 - Bessa, João Pessoa - PB, 58037-030, Brazil",restaurant,4.2,,False,-7.0793989,-34.8308349
+ChIJ5dWYQLLdrAcRvpC2_QS5gPk,NÓIS COMEDORIA - Cozinha Regional e Afetiva,Jardim Oceania,"R. Severino Linhares Pordeus, 194 - Jardim Oceania, João Pessoa - PB, 58037-773, Brazil",restaurant,4.7,,True,-7.0745542,-34.8340998
+ChIJ1yiIdjrdrAcR7pNTCCiFrRY,Restaurante Buckminster,Jardim Oceania,"Av. Fernando Luiz Henriques dos Santos, 2650 - Jardim Oceania, João Pessoa - PB, 58037-051, Brazil",restaurant,4.3,2,True,-7.0747257,-34.8315331
+ChIJu0dTRADdrAcRqhnsXfyY834,Marea Restaurante,Jardim Oceania,"R. Olívio Pinto - Jardim Oceania, João Pessoa - PB, 58037-633, Brazil",restaurant,4,,False,-7.0795322,-34.8306131
+ChIJ9YDhD8LdrAcRMep6H5jQcLQ,Bessa Grill,Bessa,"Av. Arthur Monteiro de Paiva, 1190 - Bessa, João Pessoa - PB, 58035-010, Brazil",restaurant,4.3,2,True,-7.0657079,-34.8398035
+ChIJVQrQuePdrAcRPKTgta2kcJI,Fabio Beach Bar e Restaurante,Bessa,"R. Randal Cavalcante Pímentel, 40 - Bessa, João Pessoa - PB, 58035-380, Brazil",restaurant,4.6,1,False,-7.0611763,-34.8428591
+ChIJn2f2_OndrAcR2pqhKbAQTiU,Minerim Trem Bão - Restaurante Mineiro João Pessoa,Bessa,"Av. Pres. Afonso Pena, 963 - Bessa, João Pessoa - PB, 58035-030, Brazil",restaurant,4.4,2,False,-7.0653671,-34.8409817
+ChIJ-5rQjcHdrAcRFmByxkRW0Gk,Bessa Brasil,Bessa,"Av. Arthur Monteiro de Paiva, 1320 - Bessa, João Pessoa - PB, 58035-010, Brazil",bar,4.3,2,True,-7.0670177,-34.8387584
+ChIJC8nCRurdrAcR-fL8HOVE6B8,Cantinho Regional,Bessa,"Av. Pres. Nilo Peçanha, 68 - Bessa, João Pessoa - PB, 58035-200, Brazil",restaurant,4.6,1,True,-7.0669333,-34.8403022
+ChIJfbNMapLdrAcRx256fAIdoOA,Ancoradouro Bar e Restaurante,Jardim Oceania,"Av. Gov. Argemiro de Figueiredo, 2010 - Jardim Oceania, João Pessoa - PB, 58037-030, Brazil",restaurant,4.3,2,False,-7.0797032,-34.8308488
+ChIJQxLqRujdrAcRbRpp2qHeeLc,Casa Praia JP,Bessa,"Av. Campos Sales, 334 - Bessa, João Pessoa - PB, 58035-300, Brazil",restaurant,4.6,2,True,-7.0722493,-34.8366615
+ChIJv_ppoqbdrAcR2hs1O05E558,Restaurante e Cachaçaria Dona Branca,Jardim Oceania,"Av. Gov. Argemiro de Figueiredo, 1223 - Jardim Oceania, João Pessoa - PB, 58037-030, Brazil",restaurant,4.3,2,True,-7.0860703,-34.8339085

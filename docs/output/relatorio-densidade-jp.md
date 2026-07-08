@@ -2,7 +2,7 @@
 
 **Piloto:** Segmentação de Tráfego Pago  
 **Data:** 2026-07-08  
-**Amostra:** 46 restaurantes em 5 bairros (Jardim Oceania, Manaíra, Cabo Branco, Tambaú, Bessa)
+**Amostra:** 46 restaurantes
 
 ---
 
@@ -17,10 +17,7 @@
 | Bessa | 7 | 15% |
 | **Total** | **46** | 100% |
 
-**Recomendação para Meta Ads:**  
-- **Raio prioritário:** 3 km centrado entre Manaíra e Cabo Branco → cobre 67% dos restaurantes  
-- **Raio expandido:** 5 km incluindo Bessa e Jardim Oceania → cobre 100%  
-- **Bairros para excluir do targeting:** Bancários, Miramar (0 restaurantes coletados — sem densidade relevante)
+**Recomendação:** Raio de 2.9 km centrado em (-7.101, -34.830) cobre ~70% da base.
 
 ---
 
@@ -28,36 +25,27 @@
 
 | Categoria | Qtd | % |
 |---|---|---|
-| **restaurant** | 31 | 67% |
-| italian_restaurant | 5 | 11% |
-| seafood_restaurant | 3 | 7% |
-| bar | 2 | 4% |
-| barbecue_restaurant | 2 | 4% |
-| steak_house | 1 | 2% |
-| buffet_restaurant | 1 | 2% |
-| cocktail_bar | 1 | 2% |
+| **Restaurante** | 31 | 67% |
+| **Restaurante italiano** | 5 | 11% |
+| **Frutos do mar** | 3 | 7% |
+| **Bar** | 2 | 4% |
+| **Churrascaria** | 2 | 4% |
+| **Churrascaria** | 1 | 2% |
+| **Buffet** | 1 | 2% |
+| **Bar/Coquetelaria** | 1 | 2% |
 
-**Recomendação de interesses no Meta Ads:**
-- Interesse primário: `Restaurant`, `Food & drink`, `Gastronomia`
-- Interesse secundário: `Italian cuisine`, `Seafood`, `Grill` / `Barbecue`
-- Criativos sugeridos: conteúdo genérico para "restaurantes" + variação para "comida italiana" (11% da base)
+**Interesses Meta Ads:** `restaurant`, `italian_restaurant`, `seafood_restaurant`, `bar`, `barbecue_restaurant`, `steak_house`, `buffet_restaurant`, `cocktail_bar`
 
 ---
 
-## 3. Perfil de Preço (Segmentação por Poder Aquisitivo)
+## 3. Perfil de Preço
 
-| Faixa | Qtd | % |
-|---|---|---|
-| **$$ (Moderado)** | 25 | 54% |
-| $ (Acessível) | 4 | 9% |
-| $$$ (Caro) | 3 | 7% |
-| Não classificado | 14 | 30% |
-
-**Conclusão:**  
-- Perfil dominante: **classe média ($$)** — 54% dos restaurantes  
-- Apenas 7% são fine dining ($$$)  
-- **Se o ICP inclui restaurantes acessíveis, 63% da base é alvo**  
-- 30% sem classificação de preço → o Google não atribuiu, mas são em maioria restaurantes de médio porte
+| Faixa | Qtd |
+|---|---|
+| 2 ($$) | 25 |
+| Não classificado | 14 |
+| 1 ($) | 4 |
+| 3 ($$$) | 3 |
 
 ---
 
@@ -65,53 +53,39 @@
 
 | Indicador | Valor |
 |---|---|
-| Rating médio | **4.5** |
-| Restaurantes com rating ≥ 4.5 | **32/46 (69%)** |
-| Rating máximo | 4.8 |
-
-**Conclusão:**  
-- 69% da base tem avaliação acima de 4.5 → mercado maduro e competitivo  
-- Gestor deve usar rating como **filtro de qualidade**: excluir restaurantes com rating < 4.0 do targeting  
-- Nicho: "restaurantes bons mas SEM website" → 13 restaurantes (28%) com rating médio 4.4
+| Rating médio | **4.51** |
+| ≥ 4.5 | 32/46 (70%) |
 
 ---
 
 ## 5. Maturidade Digital (Website)
 
-| Presença digital | Qtd | % |
-|---|---|---|
-| **Com website** | 33 | 72% |
-| Sem website | 13 | 28% |
-
-**Conclusão:**  
-- 72% dos restaurantes têm website → mercado com maturidade digital alta  
-- **28% sem website** = oportunidade de venda de site/presença digital  
-- Correlação: sem website ≠ sem qualidade (rating médio dos sem site é 4.4)
+| Presença | Qtd |
+|---|---|
+| Com website | 33 (72%) |
+| Sem website | 13 (28%) |
 
 ---
 
-## 6. Exemplo de Segmentação Manual no Meta Ads
-
-Com base nos dados, a campanha piloto deve ter:
+## 6. Segmentação Manual Recomendada (Meta Ads)
 
 | Parâmetro | Valor |
 |---|---|
-| **Localização** | João Pessoa + raio 3 km centrado em -7.108, -34.835 (entre Manaíra e Cabo Branco) |
-| **Bairros incluídos** | Manaíra, Cabo Branco, Tambaú, Jardim Oceania, Bessa |
-| **Interesses** | Restaurantes, Gastronomia, Cozinha italiana, Frutos do mar |
-| **Faixa etária** | 25-55 anos (perfil de consumidor de restaurante $$) |
-| **Gênero** | Todos |
+| Localização | João Pessoa + raio 2.9 km |
+| Bairros incluídos | Jardim Oceania, Manaíra, Cabo Branco, Tambaú, Bessa |
+| Interesses | Restaurante, Restaurante italiano, Frutos do mar, Bar, Churrascaria, Churrascaria, Buffet, Bar/Coquetelaria |
+| Faixa etária | 25-55 anos |
+| Gênero | Todos |
 
 ---
 
-## 7. O Que o Gestor Ganha com Este Relatório
+## 7. O Que o Gestor Ganha
 
 | Sem dados (achismo) | Com dados (este relatório) |
 |---|---|
-| Raio genérico de 10 km | Raio calibrado de 3-5 km baseado em densidade real |
-| Interesse amplo "restaurantes" | Interesse focado: restaurant + italian + seafood (89% da base) |
-| Sem filtro de preço | Alvo definido: 63% da base no perfil $/$$ |
-| Inclui bairros sem restaurantes | Exclui Bancários e Miramar da segmentação |
-| Não sabe maturidade digital | 28% sem website = oportunidade de upsell |
+| Raio genérico de 10 km | Raio calibrado de 2.9 km baseado em densidade real |
+| Interesse amplo "restaurantes" | Interesse focado em 8 categorias reais |
+| Sem filtro de preço | Distribuição real de preço dos 46 restaurantes |
+| Não sabe maturidade digital | 72% com website |
 
 **Evite o achismo. Use dados.**
