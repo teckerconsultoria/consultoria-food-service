@@ -1,6 +1,7 @@
 import json
 import logging
 import subprocess
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 
 from src.models import Restaurante
@@ -121,14 +122,30 @@ def collect_restaurants(
     logger.info("Collected %d raw, %d after dedup", len(all_raw), len(deduped))
 
     parsed = []
-    for place in deduped[:target]:
-        if enrich_details:
-            details = get_place_details(place["place_id"])
-            if details:
-                place = {**place, **details}
+    enriched = deduped[:target]
 
-        restaurante = parse_place(place)
-        parsed.append(restaurante)
+    if enrich_details:
+        logger.info("Enriching %d places with details (parallel)...", len(enriched))
+
+        def enrich_one(place):
+            details = get_place_details(place["place_id"])
+            return {**place, **(details or {})}
+
+        with ThreadPoolExecutor(max_workers=5) as executor:
+            futures = {executor.submit(enrich_one, p): i for i, p in enumerate(enriched)}
+            result_list = [None] * len(enriched)
+            for future in as_completed(futures):
+                idx = futures[future]
+                try:
+                    result_list[idx] = future.result(timeout=15)
+                except Exception as e:
+                    logger.warning("enrich failed for idx %d: %s", idx, e)
+                    result_list[idx] = enriched[idx]
+
+            enriched = [r for r in result_list if r is not None]
+
+    for place in enriched:
+        parsed.append(parse_place(place))
 
     logger.info("Final collection: %d restaurantes", len(parsed))
     return parsed
