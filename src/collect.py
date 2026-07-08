@@ -121,6 +121,35 @@ def parse_place(raw: dict) -> Restaurante:
     )
 
 
+_OVERFLOW_TERMS = [
+    "comida",
+    "almoço",
+    "lanchonete",
+]
+
+
+def _collect_from_query(
+    query: str,
+    all_raw: list[dict],
+    search_kwargs: dict,
+    max_overflow: int = 2,
+) -> None:
+    results = search_places(query, **search_kwargs)
+    all_raw.extend(results)
+    count = len(results)
+    logger.info("Query '%s' returned %d results", query, count)
+
+    if count >= 10 and " em " in query:
+        bairro_part = query.split(" em ", 1)[1]
+        for term in _OVERFLOW_TERMS[:max_overflow]:
+            overflow_q = f"{term} em {bairro_part}"
+            overflow = search_places(overflow_q, **search_kwargs)
+            all_raw.extend(overflow)
+            logger.info("  overflow '%s': +%d", overflow_q, len(overflow))
+            if len(overflow) < 10:
+                break
+
+
 def collect_restaurants(
     queries: list[str],
     target: int = 100,
@@ -140,9 +169,7 @@ def collect_restaurants(
     for query in queries:
         if len(all_raw) >= target:
             break
-        results = search_places(query, **search_kwargs)
-        all_raw.extend(results)
-        logger.info("Query '%s' returned %d results", query, len(results))
+        _collect_from_query(query, all_raw, search_kwargs)
 
     deduped = deduplicate(all_raw)
     logger.info("Collected %d raw, %d after dedup", len(all_raw), len(deduped))
