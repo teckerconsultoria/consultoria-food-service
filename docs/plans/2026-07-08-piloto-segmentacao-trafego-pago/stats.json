@@ -6,13 +6,13 @@
   "branch": "feature/piloto-segmentacao-trafego-pago",
   "summary": {
     "total": 5,
-    "open": 3,
+    "open": 2,
     "in_progress": 0,
     "blocked": 0,
-    "resolved": 2,
+    "resolved": 3,
     "skills_used_count": {
       "backend-patterns": 1,
-      "python-patterns": 1
+      "python-patterns": 2
     }
   },
   "issues": [
@@ -46,15 +46,15 @@
     {
       "id": 3,
       "title": "Análise e relatório de densidade",
-      "status": "in_progress",
+      "status": "resolved",
       "primary_skill": "python-patterns",
       "secondary_skills": ["backend-patterns"],
       "created_at": "2026-07-08T16:00:00Z",
-      "resolved_at": null,
-      "resolved_skill_used": null,
+      "resolved_at": "2026-07-08T19:00:00Z",
+      "resolved_skill_used": "python-patterns",
       "pr_url": null,
       "github_issue_url": "https://github.com/teckerconsultoria/consultoria-food-service/issues/3",
-      "notes": null
+      "notes": "analyze.py gera relatório markdown + CSV automaticamente do Supabase. 24 testes."
     },
     {
       "id": 4,
