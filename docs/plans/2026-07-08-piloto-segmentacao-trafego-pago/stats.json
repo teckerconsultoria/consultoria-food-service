@@ -6,12 +6,13 @@
   "branch": "feature/piloto-segmentacao-trafego-pago",
   "summary": {
     "total": 5,
-    "open": 4,
+    "open": 3,
     "in_progress": 0,
     "blocked": 0,
-    "resolved": 1,
+    "resolved": 2,
     "skills_used_count": {
-      "backend-patterns": 1
+      "backend-patterns": 1,
+      "python-patterns": 1
     }
   },
   "issues": [
@@ -31,15 +32,16 @@
     {
       "id": 2,
       "title": "Coleta e persistência de dados",
-      "status": "in_progress",
+      "status": "resolved",
       "primary_skill": "python-patterns",
       "secondary_skills": ["api-design", "backend-patterns"],
       "created_at": "2026-07-08T16:00:00Z",
-      "resolved_at": null,
-      "resolved_skill_used": null,
+      "resolved_at": "2026-07-08T18:00:00Z",
+      "resolved_skill_used": "python-patterns",
       "pr_url": null,
       "github_issue_url": "https://github.com/teckerconsultoria/consultoria-food-service/issues/2",
-      "notes": null
+      "notes": "Migrado de requests.post() direto para mcp-google-map CLI exec mode. geocode.py removido (substituído por maps_reverse_geocode). 15/15 testes passando."
+
     },
     {
       "id": 3,
