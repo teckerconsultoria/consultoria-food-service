@@ -16,7 +16,7 @@
     {
       "id": 1,
       "title": "Setup de contas e ambiente",
-      "status": "open",
+      "status": "in_progress",
       "primary_skill": "backend-patterns",
       "secondary_skills": ["security-review"],
       "created_at": "2026-07-08T16:00:00Z",
