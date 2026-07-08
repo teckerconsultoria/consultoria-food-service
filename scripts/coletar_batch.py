@@ -7,6 +7,7 @@ Uso:
 """
 
 import argparse
+import sys
 import time
 from collections import Counter
 
@@ -15,14 +16,15 @@ from src.db import get_supabase_client, fetch_restaurants, upsert_restaurants
 from src.collect import collect_restaurants
 
 
-BAIRROS = [
-    "Manaíra", "Tambaú", "Cabo Branco", "Bessa", "Jardim Oceania",
-    "Miramar", "Bancários", "Torre", "Expedicionários", "Altiplano",
-    "Centro", "Mangabeira", "Valentina", "Geisel", "Gramame",
-    "Brisamar", "Aeroclube", "Jardim São Paulo", "Cristo Redentor",
-    "Pedro Gondim", "José Américo", "Funcionários", "Castelo Branco",
-    "João Pessoa",  # fallback genérico
-]
+def _load_bairros() -> list[str]:
+    import yaml
+    from pathlib import Path
+    path = Path("config/bairros_jp.yaml")
+    if path.exists():
+        with open(path) as f:
+            data = yaml.safe_load(f) or {}
+        return data.get("bairros", [])
+    return []
 
 
 def main():
@@ -42,11 +44,17 @@ def main():
             client.table("restaurantes").delete().eq("place_id", r["place_id"]).execute()
         print(f"Base limpa: {len(existing)} removidos\n")
 
+    bairros = _load_bairros()
+    if not bairros:
+        print("ERRO: config/bairros_jp.yaml não encontrado ou vazio")
+        sys.exit(1)
+    print(f"Bairros carregados: {len(bairros)}")
+
     collected: list = []
     all_ids: set[str] = set()
     batch_num = 0
 
-    for bairro in BAIRROS:
+    for bairro in bairros:
         if len(all_ids) >= args.target:
             break
 
